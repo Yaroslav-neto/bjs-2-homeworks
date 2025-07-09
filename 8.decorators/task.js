@@ -21,7 +21,7 @@ function cachingDecoratorNew(func) {
 }
 
 //Задача № 2
-function debounceDecoratorNew(func, interval) {
+function debounceDecoratorNew(func, delay) {
   let timeoutId = null
   let lastArgs = null
   let lastContext = null
@@ -42,7 +42,7 @@ function debounceDecoratorNew(func, interval) {
       return
     }
 
-    if (now - lastCallTime >= interval) {
+    if (now - lastCallTime >= delay) {
       func.apply(this, args)
       wrapper.count++
       lastCallTime = now
@@ -57,7 +57,7 @@ function debounceDecoratorNew(func, interval) {
         wrapper.count++
         lastCallTime = Date.now()
         timeoutId = null
-      }, interval)
+      }, delay)
     }
   }
 
